@@ -1,6 +1,9 @@
-﻿using DiContainer.Models.Api;
+﻿using DiContainer.Di;
+using DiContainer.Models.Api;
 using DiContainer.Services;
+using DiContainer.Services.Resources;
 using Ninject;
+using Ninject.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +15,12 @@ namespace DiContainer
     {
         static void Main(string[] args)
         {
-            ApiService api = new ApiService(Properties.Settings.ApiDomain);
+            IKernel container = new StandardKernel(new DiModuleHttp());
+            ApiService api = container.Get<ApiService>();
             UserResponse u = api.GetUser(5);
             UsersResponse us = api.GetUsers();
 
             Console.ReadLine();
-        }
-
-        void Bind()
-        {
-            //IKernel kernel = new StandardKernel();
         }
     }
 }

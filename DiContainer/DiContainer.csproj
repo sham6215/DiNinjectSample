@@ -39,8 +39,8 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Ninject, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.4.0.0-beta-0134\lib\net45\Ninject.dll</HintPath>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Di\DiModule1.cs" />
+    <Compile Include="Di\DiModule.cs" />
     <Compile Include="Models\Api\UserResponse.cs" />
     <Compile Include="Models\Api\UsersResponse.cs" />
     <Compile Include="Models\Api\BaseResponse.cs" />
@@ -67,14 +67,14 @@
       <DependentUpon>Settings.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\ApiService.cs" />
+    <Compile Include="Services\IApiResource.cs" />
+    <Compile Include="Services\Resources\ApiHttpResource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Properties\Settings.resx">
       <Generator>ResXFileCodeGenerator</Generator>

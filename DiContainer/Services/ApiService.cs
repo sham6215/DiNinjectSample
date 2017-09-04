@@ -12,65 +12,21 @@ namespace DiContainer.Services
 {
     class ApiService
     {
-        private string _Domain;
-        private bool _IsHttps;
-        public ApiService(string domain) : this(domain, true)
+        private IApiResource _apiResource;
+        public ApiService(IApiResource apiResource)
         {
-        }
-        public ApiService(string domain, bool isHttps)
-        {
-            _Domain = domain;
-            _IsHttps = isHttps;
-        }
-
-        private string _RootUrl;
-
-        public string RootUrl
-        {
-            get
-            {
-                if (String.IsNullOrEmpty(_RootUrl))
-                {
-                    _RootUrl = String.Format("http{0}://{1}", _IsHttps ? "s" : "", _Domain);
-                }
-                return _RootUrl;
-            }
-        }
-
-        private string _ApiGet(string uri)
-        {
-            string url = _GetUrl(uri);
-            using (WebClient client = GetWebClient())
-            {
-                return client.DownloadString(url);
-            }
-        }
-
-        private string _GetUrl(string uri)
-        {
-            return RootUrl + uri;
-        }
-
-        private WebClient GetWebClient()
-        {
-            WebClient client = new WebClient();
-            return client;
-        }
-
-        private string _ApiPost(string url)
-        {
-            throw new NotImplementedException("_ApiPost is not implemented");
+            _apiResource = apiResource;
         }
 
         public UserResponse GetUser(Int32 Id)
         {
-            string response = _ApiGet(String.Format(Properties.Settings.ApiUriUser, Id));
+            string response = _apiResource.GetUser(Id);
             return JsonConvert.DeserializeObject<UserResponse>(response);
         }
 
         public UsersResponse GetUsers()
         {
-            string response = _ApiGet(Properties.Settings.ApiUriUsers);
+            string response = _apiResource.GetUsers();
             return JsonConvert.DeserializeObject<UsersResponse>(response);
         }
     }
