@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DiContainer.Services
 {
-    class ApiService
+    class ApiService : IApiService
     {
         private IApiResource _apiResource;
         public ApiService(IApiResource apiResource)

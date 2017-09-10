@@ -1,4 +1,5 @@
-﻿using DiContainer.Di;
+﻿using DiContainer.Decorator;
+using DiContainer.Di;
 using DiContainer.Models.Api;
 using DiContainer.Services;
 using DiContainer.Services.Resources;
@@ -16,9 +17,14 @@ namespace DiContainer
         static void Main(string[] args)
         {
             IKernel container = new StandardKernel(new DiModuleHttp());
-            ApiService api = container.Get<ApiService>();
-            UserResponse u = api.GetUser(5);
-            UsersResponse us = api.GetUsers();
+            IApiService iapi = container.Get<ApiAuthDecorator>();
+            
+            //ApiService api = container.Get<ApiService>();
+            //IApiService iapi = container.Get<IApiService>();
+            //UserResponse u = api.GetUser(5);
+            //UsersResponse us = api.GetUsers();
+
+            UserResponse u = iapi.GetUser(5);
 
             Console.ReadLine();
         }

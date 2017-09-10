@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decorator\ApiAuthDecorator.cs" />
+    <Compile Include="Decorator\DecoratorBase.cs" />
     <Compile Include="Di\DiModule.cs" />
     <Compile Include="Models\Api\UserResponse.cs" />
     <Compile Include="Models\Api\UsersResponse.cs" />
@@ -68,6 +70,7 @@
     </Compile>
     <Compile Include="Services\ApiService.cs" />
     <Compile Include="Services\IApiResource.cs" />
+    <Compile Include="Services\IApiService.cs" />
     <Compile Include="Services\Resources\ApiHttpResource.cs" />
   </ItemGroup>
   <ItemGroup>
